@@ -1,0 +1,108 @@
+/* Configurações gerais da página */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffaf4;
+    color: #333333;
+}
+
+
+/* === Cabeçalho === */
+header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #e47745;
+    font-size: 28px;
+}
+
+.logo p {
+    color: #666666;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+nav a {
+    color: #444444;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e47745;
+}
+
+/* === Login === */
+
+.containerPai{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.formulario{
+    background-color: #f8d9bd;
+    border-radius: 20px;
+    padding: 20px;
+    width: 30%;
+    height: 50vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form, .botao{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+h1{
+    margin-bottom: 20px;
+    color: #663d2b
+}
+
+.botao > input{
+    background-color: #e47745;
+    color: white;
+}
+
+#cadastro{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #663d2b;
+    font-weight: bold;
+}
+
+#cadastro:hover{
+    text-decoration: underline;
+}
+
+.botao > input:hover{
+    background-color: #c85d30
+}
