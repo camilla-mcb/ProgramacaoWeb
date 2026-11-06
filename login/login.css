@@ -31,17 +31,6 @@ header {
     margin-top: 5px;
 }
 
-nav a {
-    color: #444444;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: #e47745;
-}
-
 /* === Login === */
 
 .containerPai{
