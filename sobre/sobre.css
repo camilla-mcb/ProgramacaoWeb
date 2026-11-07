@@ -1,0 +1,98 @@
+.historia{
+    text-align: center;
+    padding: 50px 40px;
+}
+
+.historia h2{
+    color:#663d2b;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.historia p{
+    max-width: 750px;
+    margin: 0 auto 15px;
+    line-height:1.6;
+}
+
+.valores{
+    background-color:#fff0e3;
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.valores h2{
+    color:#663d2b;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.lista-valores{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.valor{
+    background-color:#ffffff;
+    width: 300px;
+    padding: 25px 20px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+}
+
+.valor h3{
+    color:#e47745;
+    margin-bottom:10px;
+}
+
+.valor p{
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contato{
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.contato h2{
+    color:#663d2b;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.contato ul {
+    list-style: none;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    padding: 25px 20px;
+
+}
+
+.contato li {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.contato li:last-child {
+    margin-bottom: 0;
+}
+
+.contato strong {
+    color: #663d2b;
+}
+
+@media (max-width: 700px) {
+    .lista-valores {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .valor {
+        width: 80%;
+    }
+}
