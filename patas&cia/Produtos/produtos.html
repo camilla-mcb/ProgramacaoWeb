@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patas & Cia | Produtos</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="produtos.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Patas & Cia</h1>
+            <p>Carinho e cuidado para seu melhor amigo</p>
+        </div>
+
+        <nav>
+            <a href="../index.html">Início</a>
+            <a href="produtos.html">Produtos</a>
+            <a href="../servicos.html">Serviços</a>
+            <a href="../../sobre/sobre.html">Sobre nós</a>
+            <a href="../carrinho/carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a>
+            <a href="../../login/login.html">Entrar</a>
+        </nav>
+    </header>
+
+    <main class="container-produtos">
+
+        <h2>Nossos produtos</h2>
+        <p class="subtitulo">Tudo o que o seu pet precisa em um só lugar.</p>
+
+        <div class="filtros">
+            <input type="text" id="busca" placeholder="Buscar produto..." oninput="mostrarProdutos()">
+
+            <select id="filtro-pet" onchange="mostrarProdutos()">
+                <option value="todos">Todos os pets</option>
+                <option value="cao">Cães</option>
+                <option value="gato">Gatos</option>
+            </select>
+
+            <select id="ordenar" onchange="mostrarProdutos()">
+                <option value="relevancia">Ordenar por</option>
+                <option value="menorPreco">Menor preço</option>
+                <option value="maiorPreco">Maior preço</option>
+                <option value="nomeAZ">Nome (A–Z)</option>
+            </select>
+        </div>
+
+        <div id="lista-produtos" class="grade-produtos"></div>
+
+    </main>
+
+    <p id="aviso" class="aviso"></p>
+
+    <footer>
+        <h2>Patas & Cia</h2>
+        <p>Cuidado, carinho e qualidade para seu melhor amigo.</p>
+        <p>Contato: contato@patasecia.com.br</p>
+        <p class="direitos">© 2026 Patas & Cia - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="produtos.js"></script>
+
+</body>
+
+</html>

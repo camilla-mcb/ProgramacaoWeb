@@ -1,0 +1,160 @@
+.container-produtos {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px 40px;
+}
+
+.container-produtos > h2 {
+    color: #663d2b;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.container-produtos .subtitulo {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #666666;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.filtros input,
+.filtros select {
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.filtros input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.grade-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card-produto {
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem-card {
+    height: 200px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    color: #663d2b;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.imagem-card small {
+    font-weight: normal;
+}
+
+.imagem-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.info-card {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.info-card small {
+    color: #888888;
+}
+
+.info-card h3 {
+    color: #663d2b;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: #555555;
+    flex: 1;
+}
+
+.info-card label {
+    font-size: 13px;
+    color: #663d2b;
+    font-weight: bold;
+}
+
+.info-card select {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.info-card strong {
+    color: #e47745;
+    font-size: 22px;
+}
+
+.info-card button {
+    background-color: #e47745;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 11px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.info-card button:hover {
+    background-color: #c85d30;
+}
+
+.sem-resultados {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #666666;
+}
+
+.aviso {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4a8a4a;
+    color: #ffffff;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    max-width: 90%;
+    text-align: center;
+    display: none;
+}
+
+.aviso.visivel {
+    display: block;
+}
+
+@media (max-width: 700px) {
+    .container-produtos {
+        padding: 15px 20px;
+    }
+}
