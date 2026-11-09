@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patas & Cia | Pet Shop</title>
     <link rel="stylesheet" href="../style/cadastro.css">
-    <script src="cadastro.js"></script>
+    
 </head>
 
 <body>
@@ -20,11 +20,13 @@
 
     <div class="containerPai">
         <div class="formulario">
+
             <h1>Cadastrar-se</h1>
-            <form onsubmit="validar(event)"> 
-                <input type="text" placeholder="Nome" required id="nome" class="msg">
-                <input type="email" placeholder="E-mail"  id="email" class="msg">
-                <input type="password" placeholder="Senha"  id="senha" class="msg">
+
+            <form id="form-cad"> 
+                <input type="text" placeholder="Nome" required id="nome" name="nome" class="msg">
+                <input type="email" placeholder="E-mail"  id="email" name="email"  class="msg">
+                <input type="password" placeholder="Senha"  id="senha" name="senha" class="msg">
 
                 <div class="botao">
                     <input type="submit" value="Confirmar">
@@ -38,7 +40,7 @@
         </div>
     </div>
 
-
+    <script src="cadastro.js" defer></script> 
 
 </body>
 

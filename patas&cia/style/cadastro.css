@@ -1,37 +1,5 @@
-/* Configurações gerais da página */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url(style.css);
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fffaf4;
-    color: #333333;
-}
-
-/* === Cabeçalho === */
-header {
-    background-color: #ffffff;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo h1 {
-    color: #e47745;
-    font-size: 28px;
-}
-
-.logo p {
-    color: #666666;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-/* === Login === */
 
 .containerPai{
     width: 100%;
