@@ -188,5 +188,7 @@ function adicionar(id) {
     mostrarAviso(produto.nome + " (" + variacao.nome + ") adicionado ao carrinho!");
 }
 
-mostrarProdutos();
-atualizarContador();
+if (document.getElementById("busca")){
+    mostrarProdutos();
+    atualizarContador();
+}

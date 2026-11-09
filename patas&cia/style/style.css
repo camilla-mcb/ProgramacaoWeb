@@ -1,0 +1,80 @@
+/* Configurações gerais da página */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffaf4;
+    color: #333333;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #e47745;
+    font-size: 28px;
+}
+
+.logo p {
+    color: #666666;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+nav a {
+    color: #444444;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e47745;
+}
+
+/* Rodapé */
+footer {
+    background-color: #663d2b;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+footer h2 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin-bottom: 8px;
+}
+
+.direitos {
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+}
