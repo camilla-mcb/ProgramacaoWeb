@@ -25,7 +25,7 @@ myLogin.addEventListener("submit", function (event) {
             msgCad.style.display = "none"
 
             setTimeout(function () {
-                window.location.href = "" // página de produtos
+                window.location.href = "../produtos/produtos.html"
             }, 3000)
 
             return
