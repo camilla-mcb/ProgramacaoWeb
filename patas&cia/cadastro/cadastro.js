@@ -3,8 +3,13 @@ const inputNome = document.querySelector("#nome")
 const inputEmail = document.querySelector("#email")
 const inputSenha = document.querySelector("#senha")
 
+const msgErro = document.querySelector("#msgErro")
+const msgFoi = document.querySelector("#msgFoi")
+const z = document.querySelector("#msg")
+
+
 myForm.addEventListener("submit", function (event) {  // Tratamento de Exceções
-    event.preventDefault();  /* impede que o formulário seja enviado antes
+    event.preventDefault()  /* impede que o formulário seja enviado antes
                             de ser verificado*/
     try {
         var x = document.getElementById("nome").value
@@ -22,10 +27,25 @@ myForm.addEventListener("submit", function (event) {  // Tratamento de Exceçõe
             throw "Digite um email válido."
         }
 
+        if(usuarioCadastrado()){ // se o usuario já estiver cadastrado, para
+            return
+        }
+
         cadastrar()
+        msg.style.display = "none"
+        msgErro.style.display = "none"
+
+        msgFoi.style.display = "block"
+        msgFoi.innerHTML = "Cadastro realizado com sucesso! Voltando para o Login..."
+
+        setTimeout(function () {
+            window.location.href = "../login/login.html"
+        }, 3000)
 
     } catch (err) {
-        var z = document.getElementById("msg")
+        msgFoi.style.display = "none"
+        msgErro.style.display = "none"
+        msg.style.display = "block"
         z.innerHTML = "Erro: " + err + "."
     }
 })
@@ -37,7 +57,7 @@ function cadastrar() { // LocalStorege
     const senhaDig = inputSenha.value
 
     //Recupera os usuários já salvos anteriormente (ou array vazio)
-    const usuarios = JSON.parse(localStorage.getItem("usuariosDoSite")) || []
+    const objUsuarios = JSON.parse(localStorage.getItem("usuariosDoSite")) || []
 
     //Cria o objeto do novo usuário
     const novoUsuario = {
@@ -47,13 +67,32 @@ function cadastrar() { // LocalStorege
     }
 
     //Adiciona o novo usuário ao array
-    usuarios.push(novoUsuario)
+    objUsuarios.push(novoUsuario)
 
     //Salva o array atualizado de volta no localStorage (convertendo para string)
-    localStorage.setItem("usuariosDoSite", JSON.stringify(usuarios))
+    localStorage.setItem("usuariosDoSite", JSON.stringify(objUsuarios))
+}
 
+function usuarioCadastrado() { // verifica se o usuario já foi cadastrado no LocalStorage
 
-    window.alert("Cadastro realizado com sucesso!")
+    let usuarios = JSON.parse(localStorage.getItem("usuariosDoSite")) || []
 
-    window.location.href = "../login/login.html"
+    let email = document.getElementById("email").value
+
+    let encontrado = false
+
+    for (let i = 0; i < usuarios.length; i++) { // verifica se o usuário já existe no localStorage
+        if (usuarios[i].email == email) {
+
+            msgFoi.style.display = "none"
+            msg.style.display = "none"
+
+            msgErro.style.display = "block"
+            msgErro.innerHTML = "Usuário já cadastrado no sistema. Volte para a tela de Login"
+
+            return true
+        }
+    }
+
+    return false
 }

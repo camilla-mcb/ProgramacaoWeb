@@ -24,20 +24,25 @@
             <h1>Cadastrar-se</h1>
 
             <form id="form-cad"> 
-                <input type="text" placeholder="Nome" required id="nome" name="nome" class="msg">
-                <input type="email" placeholder="E-mail"  id="email" name="email"  class="msg">
-                <input type="password" placeholder="Senha"  id="senha" name="senha" class="msg">
+                <input type="text" placeholder="Nome" required id="nome" class="msg">
+                <input type="email" placeholder="E-mail"  id="email" class="msg">
+                <input type="password" placeholder="Senha"  id="senha" class="msg">
 
                 <div class="botao">
                     <input type="submit" value="Confirmar">
                     <input type="reset" value="Cancelar">
                 </div>
 
-                <p id="msg"></p>
+                
 
             </form>
 
         </div>
+
+        <p id="msg"></p>
+        <p id="msgFoi"></p>
+        <p id="msgErro"></p>
+
     </div>
 
     <script src="cadastro.js" defer></script> 

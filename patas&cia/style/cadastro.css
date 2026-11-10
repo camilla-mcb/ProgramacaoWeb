@@ -6,8 +6,9 @@
     height: 100vh;
     
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .formulario{
@@ -64,6 +65,26 @@ h1{
     background-color: #c85d30
 }
 
+/* ==== Mensagens */
+
 #msg{
     color: red;
+    margin-top: 30px;
+    display: none;
+}
+
+#msgFoi{
+    display: none;
+    margin-top: 30px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#msgErro{
+    display: none;
+    margin-top: 30px;
+    color: red;
+    border-radius: 5px;
+    padding: 10px;
 }
