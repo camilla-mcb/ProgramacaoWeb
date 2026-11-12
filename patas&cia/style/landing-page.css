@@ -147,7 +147,72 @@
     background-color: #8b5940;
 }
 
-/* Sobre a loja */
+#btn-ver-mais {
+    margin-top: 30px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+/* Painel de produtos */
+.modal-produtos {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px 15px;
+    box-sizing: border-box;
+}
+
+/* Conteúdo interno do painel */
+.conteudo-modal {
+    background-color: #fff0e3;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Botão X */
+.fechar-modal {
+    display: block;
+    margin-left: auto;
+    background-color: #663d2b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 13px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.fechar-modal:hover {
+    background-color: #8b5940;
+}
+
+/* Título do painel */
+.conteudo-modal h2 {
+    color: #663d2b;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Lista de todos os produtos */
+.lista-produtos-modal {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
 .sobre {
     padding: 50px 40px;
     text-align: center;
@@ -180,5 +245,16 @@
     .banner h2 {
         font-size: 28px;
     }
+    
+    .conteudo-modal {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .lista-produtos-modal .produto {
+        width: 100%;
+    }
+
 }
+
 
