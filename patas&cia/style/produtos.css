@@ -1,8 +1,5 @@
 @import url(style.css);
 
-/* ===== Página de produtos | Patas & Cia =====
-   Cores: laranja #e47745 | marrom #663d2b | creme #fff0e3 */
-
 .container-produtos {
     max-width: 900px;
     margin: 40px auto;
@@ -20,7 +17,6 @@
     margin-bottom: 20px;
 }
 
-/* Relatório rápido */
 .resumo {
     background-color: #fff0e3;
     color: #663d2b;
@@ -30,7 +26,6 @@
     font-weight: bold;
 }
 
-/* Caixas brancas (formulário e tabela) */
 .painel {
     background-color: #ffffff;
     border: 1px solid #eeeeee;
@@ -44,7 +39,6 @@
     margin-bottom: 15px;
 }
 
-/* ===== Formulário ===== */
 label {
     display: block;
     color: #663d2b;
@@ -65,7 +59,6 @@ textarea {
     font-family: Arial, sans-serif;
 }
 
-/* tamanho e preço lado a lado */
 .linha-variacao {
     display: flex;
     gap: 10px;
@@ -114,7 +107,6 @@ button:hover {
     background-color: #f8d9bd;
 }
 
-/* Mensagem de erro ou sucesso */
 #mensagem {
     margin-top: 15px;
 }
@@ -127,7 +119,6 @@ button:hover {
     color: #4a8a4a;
 }
 
-/* ===== Tabela ===== */
 .tabela-rolavel {
     overflow-x: auto;
     margin-bottom: 15px;
@@ -156,7 +147,7 @@ td img {
     display: block;
     width: 50px;
     height: 50px;
-    object-fit: contain;   /* mostra a imagem inteira, sem cortar */
+    object-fit: contain; 
 }
 
 td button {
@@ -164,7 +155,6 @@ td button {
     margin-right: 4px;
 }
 
-/* ===== Celular ===== */
 @media (max-width: 700px) {
     .container-produtos {
         padding: 15px 20px;

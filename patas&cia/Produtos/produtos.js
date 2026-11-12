@@ -1,20 +1,3 @@
-/* =========================================================
-   produtos.js  –  Produtos | Patas & Cia
-
-   1. Produtos iniciais (os 6 que já vêm com o site)
-   2. localStorage: ler e salvar a lista de produtos
-   3. Página de gerenciar produtos (cadastrar, editar e remover)
-
-   Atenção: a home (landing-page) também carrega este arquivo
-   e usa a variável "produtos" da parte 2.
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   1. PRODUTOS INICIAIS
-   Só são usados na primeira vez, quando o localStorage está vazio.
-   Depois disso, vale o que for salvo pela página.
-   --------------------------------------------------------- */
 const produtosIniciais = [
     {
         id: 1,
@@ -87,12 +70,6 @@ const produtosIniciais = [
     }
 ];
 
-
-/* ---------------------------------------------------------
-   2. LOCALSTORAGE
-   O localStorage só guarda texto, por isso usamos
-   JSON.stringify (array -> texto) e JSON.parse (texto -> array).
-   --------------------------------------------------------- */
 function salvarProdutos(lista) {
     localStorage.setItem("produtos", JSON.stringify(lista));
 }
@@ -100,46 +77,32 @@ function salvarProdutos(lista) {
 function lerProdutos() {
     let lista = JSON.parse(localStorage.getItem("produtos"));
 
-    // null = nunca foi salvo nada: começa com os produtos iniciais
     if (lista === null) {
         lista = produtosIniciais;
         salvarProdutos(lista);
     }
-
     return lista;
 }
 
-// A lista que as páginas usam (a home usa esta variável)
 const produtos = lerProdutos();
 
-
-/* ---------------------------------------------------------
-   3. PÁGINA DE GERENCIAR PRODUTOS
-   --------------------------------------------------------- */
 const nomesPets = { cao: "Cães", gato: "Gatos", ambos: "Cães e gatos" };
 
-// Guarda o id do produto que está sendo editado.
-// null = o formulário está cadastrando um produto novo.
 let idEditando = null;
 
-// 189.9 -> "R$ 189,90"
 function formatarPreco(valor) {
     return "R$ " + valor.toFixed(2).replace(".", ",");
 }
 
-
-// ----- Mostrar a tabela e o resumo -----
 function mostrarTabela() {
     let html = "";
 
     for (let produto of produtos) {
 
-        // monta o texto das variações: "3 kg: R$ 26,90"
         let variacoes = "";
         for (let v of produto.variacoes) {
             variacoes += v.nome + ": " + formatarPreco(v.preco) + "<br>";
         }
-
         html += `
             <tr>
                 <td><img src="${produto.imagem}" alt="${produto.nome}" width="50"></td>
@@ -162,7 +125,6 @@ function mostrarTabela() {
     mostrarResumo();
 }
 
-// Relatório: quantos produtos existem e o menor e o maior preço
 function mostrarResumo() {
     let menor = null;
     let maior = null;
@@ -182,12 +144,9 @@ function mostrarResumo() {
     if (menor !== null) {
         texto += " | Menor preço: " + formatarPreco(menor) + " | Maior preço: " + formatarPreco(maior);
     }
-
     document.getElementById("resumo").innerHTML = texto;
 }
 
-
-// ----- Ler as 3 linhas de variação do formulário -----
 function lerVariacoes() {
     const variacoes = [];
 
@@ -195,7 +154,6 @@ function lerVariacoes() {
         const nome = document.getElementById("var-nome-" + i).value.trim();
         const texto = document.getElementById("var-preco-" + i).value;
 
-        // linha totalmente vazia: ignora e vai para a próxima
         if (nome === "" && texto === "") {
             continue;
         }
@@ -206,7 +164,6 @@ function lerVariacoes() {
             throw "Na variação " + i + ", preencha o tamanho e um preço maior que zero";
         }
 
-        // o carrinho separa os itens pelo tamanho, então não pode repetir
         for (let v of variacoes) {
             if (v.nome.toLowerCase() === nome.toLowerCase()) {
                 throw "O tamanho " + nome + " está repetido";
@@ -220,16 +177,13 @@ function lerVariacoes() {
         throw "Cadastre pelo menos uma variação (tamanho e preço)";
     }
 
-    // deixa da mais barata para a mais cara (a home mostra o primeiro preço)
     variacoes.sort((a, b) => a.preco - b.preco);
 
     return variacoes;
 }
 
-
-// ----- Cadastrar ou salvar alterações (o mesmo formulário serve para os dois) -----
 function salvarProduto(evento) {
-    evento.preventDefault();   // impede a página de recarregar
+    evento.preventDefault();
 
     const mensagem = document.getElementById("mensagem");
 
@@ -239,7 +193,6 @@ function salvarProduto(evento) {
         const imagem = document.getElementById("imagem").value.trim();
         const descricao = document.getElementById("descricao").value.trim();
 
-        // Validações: cada throw manda uma mensagem para o catch
         if (nome.length < 3) {
             throw "O nome precisa ter pelo menos 3 letras";
         }
@@ -261,7 +214,6 @@ function salvarProduto(evento) {
         const variacoes = lerVariacoes();
 
         if (idEditando === null) {
-            // CADASTRAR: o id novo é o maior id existente + 1
             let novoId = 1;
             for (let produto of produtos) {
                 if (produto.id >= novoId) {
@@ -278,7 +230,6 @@ function salvarProduto(evento) {
                 variacoes: variacoes
             });
         } else {
-            // EDITAR: acha o produto e troca os campos
             for (let produto of produtos) {
                 if (produto.id === idEditando) {
                     produto.nome = nome;
@@ -290,7 +241,7 @@ function salvarProduto(evento) {
             }
         }
 
-        salvarProdutos(produtos);   // grava no localStorage
+        salvarProdutos(produtos);
         const editou = (idEditando !== null);
         limparFormulario();
         mostrarTabela();
@@ -304,8 +255,6 @@ function salvarProduto(evento) {
     }
 }
 
-
-// ----- Editar: copia os dados do produto para o formulário -----
 function editarProduto(id) {
     for (let produto of produtos) {
         if (produto.id === id) {
@@ -316,7 +265,6 @@ function editarProduto(id) {
             document.getElementById("imagem").value = produto.imagem.replace("../imagens/", "");
             document.getElementById("descricao").value = produto.descricao;
 
-            // preenche as 3 linhas de variação (as que sobrarem ficam vazias)
             for (let i = 1; i <= 3; i++) {
                 const v = produto.variacoes[i - 1];
                 document.getElementById("var-nome-" + i).value = v ? v.nome : "";
@@ -328,12 +276,11 @@ function editarProduto(id) {
             document.getElementById("btn-cancelar").style.display = "inline-block";
             document.getElementById("mensagem").innerHTML = "";
 
-            window.scrollTo(0, 0);   // sobe a página para mostrar o formulário
+            window.scrollTo(0, 0);
         }
     }
 }
 
-// Volta o formulário para o modo "cadastrar produto novo"
 function limparFormulario() {
     idEditando = null;
     document.getElementById("form-produto").reset();
@@ -343,18 +290,16 @@ function limparFormulario() {
     document.getElementById("btn-cancelar").style.display = "none";
 }
 
-
-// ----- Remover -----
 function removerProduto(id) {
     for (let i = 0; i < produtos.length; i++) {
         if (produtos[i].id === id) {
 
             if (confirm("Remover " + produtos[i].nome + "?")) {
-                produtos.splice(i, 1);          // tira 1 item na posição i
+                produtos.splice(i, 1);         
                 salvarProdutos(produtos);
 
                 if (idEditando === id) {
-                    limparFormulario();         // estava editando justamente este
+                    limparFormulario();         
                 }
                 mostrarTabela();
             }
@@ -363,7 +308,6 @@ function removerProduto(id) {
     }
 }
 
-// Apaga a chave do localStorage. Ao recarregar, voltam os 6 produtos iniciais.
 function restaurarIniciais() {
     if (confirm("Apagar as alterações e voltar aos 6 produtos iniciais?")) {
         localStorage.removeItem("produtos");
@@ -371,12 +315,6 @@ function restaurarIniciais() {
     }
 }
 
-
-/* ---------------------------------------------------------
-   4. QUANDO A PÁGINA ABRE
-   A home também carrega este arquivo, e lá não existe o formulário.
-   Por isso só rodamos isto se o formulário existir na página.
-   --------------------------------------------------------- */
 if (document.getElementById("form-produto") !== null) {
     document.getElementById("form-produto").addEventListener("submit", salvarProduto);
     mostrarTabela();
