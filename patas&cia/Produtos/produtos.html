@@ -7,7 +7,6 @@
     <title>Patas & Cia | Produtos</title>
 
     <link rel="stylesheet" href="../style/produtos.css">
-    <link rel="stylesheet" href="produtos.css">
 </head>
 
 <body>
@@ -22,38 +21,87 @@
             <a href="../landing-page/index.html">Início</a>
             <a href="produtos.html">Produtos</a>
             <a href="../sobre/sobre.html">Sobre nós</a>
-            <a href="../carrinho/carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a>
+            <a href="../carrinho/carrinho.html">Carrinho</a>
             <a href="../login/login.html">Entrar</a>
         </nav>
     </header>
 
     <main class="container-produtos">
 
-        <h2>Nossos produtos</h2>
-        <p class="subtitulo">Tudo o que o seu pet precisa em um só lugar.</p>
+        <h2>Gerenciar produtos</h2>
+        <p class="subtitulo">Cadastre produtos, altere preços e remova itens da loja.</p>
 
-        <div class="filtros">
-            <input type="text" id="busca" placeholder="Buscar produto..." oninput="mostrarProdutos()">
+        <!-- Relatório rápido -->
+        <p id="resumo" class="resumo"></p>
 
-            <select id="filtro-pet" onchange="mostrarProdutos()">
-                <option value="todos">Todos os pets</option>
-                <option value="cao">Cães</option>
-                <option value="gato">Gatos</option>
-            </select>
+        <!-- Formulário: serve para cadastrar e para editar -->
+        <section class="painel">
+            <h3 id="titulo-form">Cadastrar novo produto</h3>
 
-            <select id="ordenar" onchange="mostrarProdutos()">
-                <option value="relevancia">Ordenar por</option>
-                <option value="menorPreco">Menor preço</option>
-                <option value="maiorPreco">Maior preço</option>
-                <option value="nomeAZ">Nome (A–Z)</option>
-            </select>
-        </div>
+            <form id="form-produto">
 
-        <div id="lista-produtos" class="grade-produtos"></div>
+                <label for="nome">Nome do produto</label>
+                <input type="text" id="nome" placeholder="Ex.: Coleira Ajustável">
+
+                <label for="pet">Para quem?</label>
+                <select id="pet">
+                    <option value="cao">Cães</option>
+                    <option value="gato">Gatos</option>
+                    <option value="ambos">Cães e gatos</option>
+                </select>
+
+                <label for="imagem">Imagem (nome do arquivo na pasta imagens)</label>
+                <input type="text" id="imagem" placeholder="Ex.: coleira.png">
+
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" rows="3" placeholder="Fale um pouco sobre o produto"></textarea>
+
+                <label>Variações (tamanho ou peso e o preço de cada um)</label>
+                <div class="linha-variacao">
+                    <input type="text" id="var-nome-1" placeholder="Ex.: 3 kg">
+                    <input type="number" id="var-preco-1" step="0.01" placeholder="Preço (R$)">
+                </div>
+                <div class="linha-variacao">
+                    <input type="text" id="var-nome-2" placeholder="Opcional">
+                    <input type="number" id="var-preco-2" step="0.01" placeholder="Preço (R$)">
+                </div>
+                <div class="linha-variacao">
+                    <input type="text" id="var-nome-3" placeholder="Opcional">
+                    <input type="number" id="var-preco-3" step="0.01" placeholder="Preço (R$)">
+                </div>
+
+                <div class="botoes">
+                    <input type="submit" id="btn-salvar" value="Cadastrar produto">
+                    <input type="button" id="btn-cancelar" value="Cancelar edição" onclick="limparFormulario()" style="display: none;">
+                </div>
+            </form>
+
+            <p id="mensagem"></p>
+        </section>
+
+        <!-- Lista de produtos cadastrados -->
+        <section class="painel">
+            <h3>Produtos cadastrados</h3>
+
+            <div class="tabela-rolavel">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Produto</th>
+                            <th>Para</th>
+                            <th>Variações e preços</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-produtos"></tbody>
+                </table>
+            </div>
+
+            <button onclick="restaurarIniciais()">Restaurar produtos iniciais</button>
+        </section>
 
     </main>
-
-    <p id="aviso" class="aviso"></p>
 
     <footer>
         <h2>Patas & Cia</h2>
