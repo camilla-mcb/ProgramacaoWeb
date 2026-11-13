@@ -3,39 +3,38 @@ const myLogin = document.querySelector("#form-login")
 const msgEntrou = document.getElementById("msgEntrou")
 const msgCad = document.getElementById("msgCad")
 
-myLogin.addEventListener("submit", function (event) { 
+myLogin.addEventListener("submit", function (event) {
     event.preventDefault()
 
-    const dadosSalvos = JSON.parse(localStorage.getItem("usuariosDoSite")) || []
+    const dadosSalvos = JSON.parse(localStorage.getItem("usuariosCadastrados")) || []
 
-    const email = document.querySelector("[name = 'email']").value
-    const senha = document.querySelector("[name = 'senha']").value
+    const emailDig = document.getElementById("email").value
+    const senhaDig = document.getElementById("senha").value
 
     for (let i = 0; i < dadosSalvos.length; i++) {
 
-        if (dadosSalvos[i].email == email && dadosSalvos[i].senha == senha) { // verificação se o usuário está no localStorage
+        if (dadosSalvos[i].email == emailDig && dadosSalvos[i].senha == senhaDig) { // verificação se o usuário está no localStorage
 
-            const usuarioLogado = {
-                nome: dadosSalvos[i].nome,
-                email: dadosSalvos[i].email
-            }
-
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado))
-
-            if (email == "admin@email.com" && senha == "000") {
+            // se logar como admin vai para a pagina de gerenciamento de produtos
+            if (emailDig === "admin@email.com" && senhaDig === "000") {
                 msgEntrou.innerHTML = "Entrou como Administrador! Aguarde..."
-                window.location.href = "../Produtos/produtos.html";
+
+                setTimeout(function () {
+                    window.location.href = "../produtos/produtos.html"
+                }, 3000)
+
+            // se logar como cliente vai para a página inicial
             } else {
                 msgEntrou.innerHTML = `Bem vindo, ${dadosSalvos[i].nome}! Aguarde..`
-                window.location.href = "../landing-page/index.html";
+
+                setTimeout(function () {
+                    window.location.href = "../landing-page/index.html"
+                }, 3000)
+
             }
 
             msgEntrou.style.display = "block"
             msgCad.style.display = "none"
-
-            setTimeout(function () {
-                window.location.href = "../produtos/produtos.html"
-            }, 3000)
 
             return
         }

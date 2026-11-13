@@ -1,37 +1,36 @@
 const myForm = document.querySelector("#form-cad")
-const inputNome = document.querySelector("#nome")
-const inputEmail = document.querySelector("#email")
-const inputSenha = document.querySelector("#senha")
 
 const msgErro = document.querySelector("#msgErro")
 const msgFoi = document.querySelector("#msgFoi")
 const z = document.querySelector("#msg")
 
+// ============= Tratamento de Exeções ==============
 
-myForm.addEventListener("submit", function (event) {  // Tratamento de Exceções
-    event.preventDefault()  /* impede que o formulário seja enviado antes
-                            de ser verificado*/
+myForm.addEventListener("submit", function (event) {
+    event.preventDefault()  /* impede que o formulário seja enviado antes de ser verificado*/
+
+    const nomeDig = document.getElementById("nome").value
+    const emailDig = document.getElementById("email").value
+    const senhaDig = document.getElementById("senha").value
+
     try {
-        var x = document.getElementById("nome").value
 
-        if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(x)) { // permitir somente letras
-            throw "Digite somente letras no campo";
+        if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(nomeDig)) { // permitir somente letras
+            throw "Digite somente letras no campo Nome";
         }
 
-        var y = document.getElementById("email").value
+        const atpos = emailDig.indexOf("@")
+        const dotpos = emailDig.lastIndexOf(".")
 
-        var atpos = y.indexOf("@")
-        var dotpos = y.lastIndexOf(".")
-
-        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= y.length) {
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailDig.length) {
             throw "Digite um email válido."
         }
 
-        if(usuarioCadastrado()){ // se o usuario já estiver cadastrado, para
+        if (usuarioCadastrado(emailDig)) { // se o usuario já estiver cadastrado, para
             return
         }
 
-        cadastrar()
+        cadastrar(nomeDig, emailDig, senhaDig)
         msg.style.display = "none"
         msgErro.style.display = "none"
 
@@ -50,14 +49,12 @@ myForm.addEventListener("submit", function (event) {  // Tratamento de Exceçõe
     }
 })
 
-function cadastrar() { // LocalStorege
+// ======================== Cadastro ====================
 
-    const nomeDig = inputNome.value
-    const emailDig = inputEmail.value
-    const senhaDig = inputSenha.value
+//Recupera os usuários já salvos anteriormente como string e converte para array (ou array vazio caso nada esteja salvo)
+const usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || []
 
-    //Recupera os usuários já salvos anteriormente (ou array vazio)
-    const objUsuarios = JSON.parse(localStorage.getItem("usuariosDoSite")) || []
+function cadastrar(nomeDig, emailDig, senhaDig) { // cadastra no LocalStorege
 
     //Cria o objeto do novo usuário
     const novoUsuario = {
@@ -67,22 +64,17 @@ function cadastrar() { // LocalStorege
     }
 
     //Adiciona o novo usuário ao array
-    objUsuarios.push(novoUsuario)
+    usuarios.push(novoUsuario)
 
     //Salva o array atualizado de volta no localStorage (convertendo para string)
-    localStorage.setItem("usuariosDoSite", JSON.stringify(objUsuarios))
+    localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios))
 }
 
-function usuarioCadastrado() { // verifica se o usuario já foi cadastrado no LocalStorage
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosDoSite")) || []
-
-    let email = document.getElementById("email").value
-
-    let encontrado = false
+function usuarioCadastrado(emailDig) { // verifica se o usuario já foi cadastrado no LocalStorage
 
     for (let i = 0; i < usuarios.length; i++) { // verifica se o usuário já existe no localStorage
-        if (usuarios[i].email == email) {
+        if (usuarios[i].email === emailDig) {
 
             msgFoi.style.display = "none"
             msg.style.display = "none"
