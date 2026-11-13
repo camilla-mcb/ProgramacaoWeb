@@ -15,6 +15,13 @@ myLogin.addEventListener("submit", function (event) {
 
         if (dadosSalvos[i].email == emailDig && dadosSalvos[i].senha == senhaDig) { // verificação se o usuário está no localStorage
 
+            const usuarioLogado = {
+                nome: dadosSalvos[i].nome,
+                email: dadosSalvos[i].email
+            }
+
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado))
+
             // se logar como admin vai para a pagina de gerenciamento de produtos
             if (emailDig === "admin@email.com" && senhaDig === "000") {
                 msgEntrou.innerHTML = "Entrou como Administrador! Aguarde..."
