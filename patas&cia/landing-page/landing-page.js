@@ -13,9 +13,39 @@ function criarCard(produto) {
                 R$ ${produto.variacoes[0].preco.toFixed(2).replace(".", ",")}
             </strong>
 
+            <button
+                class="botao-adicionar"
+                data-id="${produto.id}"
+                data-nome="${produto.nome}"
+                data-preco="${produto.variacoes[0].preco}"
+                data-imagem="${produto.imagem}">
+
+                
+                Adicionar ao carrinho
+
+            </button>
+
         </div>
     `;
 }
+
+
+// DETECTAR CLIQUE NO BOTÃO
+document.addEventListener("click", function (event) {
+
+    const botao = event.target.closest(".botao-adicionar");
+
+    if (botao) {
+
+        adicionarCarrinho(
+            botao.dataset.id,
+            botao.dataset.nome,
+            botao.dataset.preco,
+            botao.dataset.imagem
+        );
+    }
+
+});
 
 
 function mostrarDestaques() {

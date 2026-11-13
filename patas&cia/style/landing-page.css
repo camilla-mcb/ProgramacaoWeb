@@ -258,3 +258,15 @@
 }
 
 
+.botao-adicionar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botao-adicionar:hover {
+    background-color: #45a049;
+}

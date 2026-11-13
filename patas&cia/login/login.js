@@ -15,10 +15,19 @@ myLogin.addEventListener("submit", function (event) {
 
         if (dadosSalvos[i].email == email && dadosSalvos[i].senha == senha) { // verificação se o usuário está no localStorage
 
+            const usuarioLogado = {
+                nome: dadosSalvos[i].nome,
+                email: dadosSalvos[i].email
+            }
+
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado))
+
             if (email == "admin@email.com" && senha == "000") {
                 msgEntrou.innerHTML = "Entrou como Administrador! Aguarde..."
+                window.location.href = "../Produtos/produtos.html";
             } else {
                 msgEntrou.innerHTML = `Bem vindo, ${dadosSalvos[i].nome}! Aguarde..`
+                window.location.href = "../landing-page/index.html";
             }
 
             msgEntrou.style.display = "block"
