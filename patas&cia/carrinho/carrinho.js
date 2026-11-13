@@ -1,9 +1,7 @@
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
 function verificarLogin() {
-    if (!usuarioLogado) {
-        alert("Faça login primeiro!");
-        window.location.href = "../login/login.html";
+    if (!usuarioLogado) {   
         return false;
     }
     return true;
@@ -26,7 +24,11 @@ function salvarCarrinho(carrinho) {
 }
 
 function adicionarCarrinho(id, nome, preco, imagem) {
-    if (!verificarLogin()) return;
+    if (!verificarLogin()) {
+        alert("Faça login primeiro!");
+        window.location.href = "../login/login.html";
+        return;
+    }
 
     let carrinho = carregarCarrinho();
     let produto = carrinho.find(p => p.id == id);
